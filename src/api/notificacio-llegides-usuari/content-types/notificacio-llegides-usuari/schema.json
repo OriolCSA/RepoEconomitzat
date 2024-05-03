@@ -12,7 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "idNotificacio": {
+    "idUsuari": {
+      "type": "biginteger"
+    },
+    "idNotificacioLlegida": {
       "type": "biginteger"
     }
   }

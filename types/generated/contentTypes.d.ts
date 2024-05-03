@@ -835,7 +835,8 @@ export interface ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari
     draftAndPublish: true;
   };
   attributes: {
-    idNotificacio: Attribute.BigInteger;
+    idUsuari: Attribute.BigInteger;
+    idNotificacioLlegida: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
