@@ -378,6 +378,8 @@ export interface ApiNotificacioNotificacio extends Schema.CollectionType {
     url: Attribute.Text;
     dataInici: Attribute.DateTime;
     dataFi: Attribute.DateTime;
+    idUsuari: Attribute.BigInteger;
+    llegida: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
