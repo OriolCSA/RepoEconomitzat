@@ -23,13 +23,6 @@
     },
     "dataFi": {
       "type": "datetime"
-    },
-    "idUsuari": {
-      "type": "biginteger"
-    },
-    "llegida": {
-      "type": "boolean",
-      "default": false
     }
   }
 }
