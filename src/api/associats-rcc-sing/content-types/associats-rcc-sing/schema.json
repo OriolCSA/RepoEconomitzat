@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "associats_rccs",
+  "info": {
+    "singularName": "associats-rcc-sing",
+    "pluralName": "associats-rccs",
+    "displayName": "AssociatsRCC",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "int": {
+      "type": "integer"
+    },
+    "NomEmpresa": {
+      "type": "string"
+    },
+    "associats": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::associats-sing.associats-sing"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "grups_hotelers",
+  "info": {
+    "singularName": "grup-hoteler",
+    "pluralName": "grups-hotelers",
+    "displayName": "Grup Hoteler",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string"
+    },
+    "idGrupHoteler": {
+      "type": "biginteger"
+    },
+    "hotels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hotel.hotel"
+    }
+  }
+}

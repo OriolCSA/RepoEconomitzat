@@ -17,6 +17,18 @@
     },
     "idNotificacioLlegida": {
       "type": "biginteger"
+    },
+    "Proves": {
+      "type": "customField",
+      "options": [
+        "aa",
+        "ddd",
+        "vb",
+        "b",
+        "b",
+        ""
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

@@ -362,73 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiNotificacioNotificacio extends Schema.CollectionType {
-  collectionName: 'notificacions';
-  info: {
-    singularName: 'notificacio';
-    pluralName: 'notificacions';
-    displayName: 'Notificacions';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    contingut: Attribute.Text;
-    url: Attribute.Text;
-    dataInici: Attribute.DateTime;
-    dataFi: Attribute.DateTime;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::notificacio.notificacio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::notificacio.notificacio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari
-  extends Schema.CollectionType {
-  collectionName: 'notificacio_llegides_usuaris';
-  info: {
-    singularName: 'notificacio-llegides-usuari';
-    pluralName: 'notificacio-llegides-usuaris';
-    displayName: 'NotificacioLlegidesUsuari';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    idUsuari: Attribute.BigInteger;
-    idNotificacioLlegida: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::notificacio-llegides-usuari.notificacio-llegides-usuari',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::notificacio-llegides-usuari.notificacio-llegides-usuari',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -657,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -808,46 +788,215 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiAssociatsRccSingAssociatsRccSing
+  extends Schema.CollectionType {
+  collectionName: 'associats_rccs';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
+    singularName: 'associats-rcc-sing';
+    pluralName: 'associats-rccs';
+    displayName: 'AssociatsRCC';
     description: '';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
+    int: Attribute.Integer;
+    NomEmpresa: Attribute.String;
+    associats: Attribute.Relation<
+      'api::associats-rcc-sing.associats-rcc-sing',
+      'oneToMany',
+      'api::associats-sing.associats-sing'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::associats-rcc-sing.associats-rcc-sing',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::associats-rcc-sing.associats-rcc-sing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAssociatsSingAssociatsSing extends Schema.CollectionType {
+  collectionName: 'associats';
+  info: {
+    singularName: 'associats-sing';
+    pluralName: 'associats';
+    displayName: 'Associats';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    idAssociat: Attribute.BigInteger;
+    NIEA: Attribute.String;
+    NomEmpresa: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::associats-sing.associats-sing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::associats-sing.associats-sing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGrupHotelerGrupHoteler extends Schema.CollectionType {
+  collectionName: 'grups_hotelers';
+  info: {
+    singularName: 'grup-hoteler';
+    pluralName: 'grups-hotelers';
+    displayName: 'Grup Hoteler';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String;
+    idGrupHoteler: Attribute.BigInteger;
+    hotels: Attribute.Relation<
+      'api::grup-hoteler.grup-hoteler',
+      'oneToMany',
+      'api::hotel.hotel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grup-hoteler.grup-hoteler',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grup-hoteler.grup-hoteler',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelHotel extends Schema.CollectionType {
+  collectionName: 'hotels';
+  info: {
+    singularName: 'hotel';
+    pluralName: 'hotels';
+    displayName: 'Hotel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel.hotel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNotificacioNotificacio extends Schema.CollectionType {
+  collectionName: 'notificacions';
+  info: {
+    singularName: 'notificacio';
+    pluralName: 'notificacions';
+    displayName: 'Notificacions';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contingut: Attribute.Text;
+    url: Attribute.Text;
+    dataInici: Attribute.DateTime;
+    dataFi: Attribute.DateTime;
+    tipusNotificacio: Attribute.Integer;
+    Titol: Attribute.String;
+    Destinataris: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['Hotel 1', 'Hotel 2', 'Hotel 3', 'Hotel 4']
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notificacio.notificacio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notificacio.notificacio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari
+  extends Schema.CollectionType {
+  collectionName: 'notificacio_llegides_usuaris';
+  info: {
+    singularName: 'notificacio-llegides-usuari';
+    pluralName: 'notificacio-llegides-usuaris';
+    displayName: 'NotificacioLlegidesUsuari';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    idUsuari: Attribute.BigInteger;
+    idNotificacioLlegida: Attribute.BigInteger;
+    Proves: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['aa', 'ddd', 'vb', 'b', 'b', '']
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notificacio-llegides-usuari.notificacio-llegides-usuari',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notificacio-llegides-usuari.notificacio-llegides-usuari',
       'oneToOne',
       'admin::user'
     > &
@@ -865,16 +1014,20 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::notificacio.notificacio': ApiNotificacioNotificacio;
-      'api::notificacio-llegides-usuari.notificacio-llegides-usuari': ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::associats-rcc-sing.associats-rcc-sing': ApiAssociatsRccSingAssociatsRccSing;
+      'api::associats-sing.associats-sing': ApiAssociatsSingAssociatsSing;
+      'api::grup-hoteler.grup-hoteler': ApiGrupHotelerGrupHoteler;
+      'api::hotel.hotel': ApiHotelHotel;
+      'api::notificacio.notificacio': ApiNotificacioNotificacio;
+      'api::notificacio-llegides-usuari.notificacio-llegides-usuari': ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari;
     }
   }
 }

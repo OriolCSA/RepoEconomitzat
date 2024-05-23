@@ -23,6 +23,22 @@
     },
     "dataFi": {
       "type": "datetime"
+    },
+    "tipusNotificacio": {
+      "type": "integer"
+    },
+    "Titol": {
+      "type": "string"
+    },
+    "Destinataris": {
+      "type": "customField",
+      "options": [
+        "Hotel 1",
+        "Hotel 2",
+        "Hotel 3",
+        "Hotel 4"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }
