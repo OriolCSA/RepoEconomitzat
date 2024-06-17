@@ -22,6 +22,15 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::hotel.hotel"
+    },
+    "HotelsDestinataris": {
+      "type": "customField",
+      "options": [
+        "Hotel 1",
+        "Hotel 3",
+        "Hotel 55"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

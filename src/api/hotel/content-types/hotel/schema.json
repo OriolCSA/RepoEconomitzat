@@ -4,7 +4,8 @@
   "info": {
     "singularName": "hotel",
     "pluralName": "hotels",
-    "displayName": "Hotel"
+    "displayName": "Hotel",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,9 @@
   "attributes": {
     "Nom": {
       "type": "string"
+    },
+    "grupHotelerId": {
+      "type": "integer"
     }
   }
 }

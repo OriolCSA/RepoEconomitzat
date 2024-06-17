@@ -877,6 +877,11 @@ export interface ApiGrupHotelerGrupHoteler extends Schema.CollectionType {
       'oneToMany',
       'api::hotel.hotel'
     >;
+    HotelsDestinataris: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['Hotel 1', 'Hotel 3', 'Hotel 55']
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -901,12 +906,14 @@ export interface ApiHotelHotel extends Schema.CollectionType {
     singularName: 'hotel';
     pluralName: 'hotels';
     displayName: 'Hotel';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     Nom: Attribute.String;
+    grupHotelerId: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -941,13 +948,10 @@ export interface ApiNotificacioNotificacio extends Schema.CollectionType {
     url: Attribute.Text;
     dataInici: Attribute.DateTime;
     dataFi: Attribute.DateTime;
-    tipusNotificacio: Attribute.Integer;
-    Titol: Attribute.String;
-    Destinataris: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        ['Hotel 1', 'Hotel 2', 'Hotel 3', 'Hotel 4']
-      >;
+    titol: Attribute.String;
+    tipusNotificacio: Attribute.Enumeration<
+      ['Sistema', 'Grups Hotelers', 'Prove\u00EFdors']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
