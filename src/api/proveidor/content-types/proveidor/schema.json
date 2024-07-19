@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proveidors",
+  "info": {
+    "singularName": "proveidor",
+    "pluralName": "proveidors",
+    "displayName": "Proveidors",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "idProveidor": {
+      "type": "integer",
+      "unique": true,
+      "required": true
+    },
+    "NIEA": {
+      "type": "string"
+    },
+    "Descripcio": {
+      "type": "text"
+    },
+    "Nom": {
+      "type": "string"
+    }
+  }
+}

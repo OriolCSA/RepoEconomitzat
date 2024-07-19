@@ -31,6 +31,9 @@
         "Hotel 55"
       ],
       "customField": "plugin::multi-select.multi-select"
+    },
+    "localitzacioGH": {
+      "type": "string"
     }
   }
 }

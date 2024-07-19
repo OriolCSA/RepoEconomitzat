@@ -882,6 +882,7 @@ export interface ApiGrupHotelerGrupHoteler extends Schema.CollectionType {
         'plugin::multi-select.multi-select',
         ['Hotel 1', 'Hotel 3', 'Hotel 55']
       >;
+    localitzacioGH: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -914,6 +915,7 @@ export interface ApiHotelHotel extends Schema.CollectionType {
   attributes: {
     Nom: Attribute.String;
     grupHotelerId: Attribute.Integer;
+    localitzacio: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1008,6 +1010,40 @@ export interface ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari
   };
 }
 
+export interface ApiProveidorProveidor extends Schema.CollectionType {
+  collectionName: 'proveidors';
+  info: {
+    singularName: 'proveidor';
+    pluralName: 'proveidors';
+    displayName: 'Proveidors';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    idProveidor: Attribute.Integer & Attribute.Required & Attribute.Unique;
+    NIEA: Attribute.String;
+    Descripcio: Attribute.Text;
+    Nom: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proveidor.proveidor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proveidor.proveidor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1032,6 +1068,7 @@ declare module '@strapi/types' {
       'api::hotel.hotel': ApiHotelHotel;
       'api::notificacio.notificacio': ApiNotificacioNotificacio;
       'api::notificacio-llegides-usuari.notificacio-llegides-usuari': ApiNotificacioLlegidesUsuariNotificacioLlegidesUsuari;
+      'api::proveidor.proveidor': ApiProveidorProveidor;
     }
   }
 }
