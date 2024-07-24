@@ -1,14 +1,5 @@
 'use strict';
 
-const populateProveidor = require('../../../../config/populateProveidor');
+const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = {
-  async populate(ctx) {
-    try {
-      await populateProveidor();
-      ctx.send({ message: 'Proveidors collection populated successfully.' });
-    } catch (err) {
-      ctx.send({ error: 'Error populating Proveidors collection.' });
-    }
-  },
-};
+module.exports = createCoreController('api::proveidor.proveidor');

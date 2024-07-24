@@ -25,6 +25,9 @@
     },
     "Nom": {
       "type": "string"
+    },
+    "email": {
+      "type": "string"
     }
   }
 }

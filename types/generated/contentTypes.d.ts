@@ -915,7 +915,7 @@ export interface ApiHotelHotel extends Schema.CollectionType {
   attributes: {
     Nom: Attribute.String;
     grupHotelerId: Attribute.Integer;
-    localitzacio: Attribute.Integer;
+    localitzacio: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1026,6 +1026,7 @@ export interface ApiProveidorProveidor extends Schema.CollectionType {
     NIEA: Attribute.String;
     Descripcio: Attribute.Text;
     Nom: Attribute.String;
+    email: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -19,7 +19,7 @@
       "type": "integer"
     },
     "localitzacio": {
-      "type": "integer"
+      "type": "string"
     }
   }
 }
